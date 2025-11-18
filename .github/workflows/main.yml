@@ -1,6 +1,0 @@
-name: Reporting Automation
-
-on:
-  schedule:
-    - cron: "0 9 * * *"
-  workflow_dispatch:  # allows manual trigger
