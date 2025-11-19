@@ -23,14 +23,17 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # Daily job
       - name: Run daily summary
-        if: github.event.schedule == '0 9 * * *'
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 9 * * *'
         run: python daily_summary.py
 
+      # Weekly job
       - name: Run weekly report
-        if: github.event.schedule == '0 9 * * 0'
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 9 * * 0'
         run: python weekly_report.py
 
+      # Monthly job
       - name: Run monthly report
-        if: github.event.schedule == '0 9 1 * *'
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 9 1 * *'
         run: python monthly_report.py
