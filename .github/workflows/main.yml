@@ -4,6 +4,8 @@ on:
   workflow_dispatch:   # allows manual trigger
   schedule:
     - cron: "0 9 * * *"   # daily at 9 AM UTC
+    - cron: "0 9 * * 0"   # weekly on Sunday at 9 AM UTC
+    - cron: "0 9 1 * *"   # monthly on the 1st at 9 AM UTC
 
 jobs:
   run-reports:
@@ -21,5 +23,17 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # Daily job
       - name: Run daily summary
+        if: github.event.schedule == '0 9 * * *'
         run: python daily_summary.py
+
+      # Weekly job
+      - name: Run weekly report
+        if: github.event.schedule == '0 9 * * 0'
+        run: python weekly_report.py
+
+      # Monthly job
+      - name: Run monthly report
+        if: github.event.schedule == '0 9 1 * *'
+        run: python monthly_report.py
