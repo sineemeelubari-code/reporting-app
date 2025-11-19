@@ -1,17 +1,7 @@
 name: Reporting Automation
 
 on:
-  workflow_dispatch:
-    inputs:
-      report_type:
-        description: "Which report to run?"
-        required: true
-        default: "daily"
-        type: choice
-        options:
-          - daily
-          - weekly
-          - monthly
+  workflow_dispatch:   # allows manual trigger
   schedule:
     - cron: "0 9 * * *"   # daily at 9 AM UTC
     - cron: "0 9 * * 0"   # weekly on Sunday at 9 AM UTC
@@ -20,7 +10,7 @@ on:
 jobs:
   daily:
     runs-on: ubuntu-latest
-    if: github.event.inputs.report_type == 'daily' || github.event.schedule == '0 9 * * *'
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 9 * * *'
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -31,7 +21,7 @@ jobs:
 
   weekly:
     runs-on: ubuntu-latest
-    if: github.event.inputs.report_type == 'weekly' || github.event.schedule == '0 9 * * 0'
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 9 * * 0'
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -42,7 +32,7 @@ jobs:
 
   monthly:
     runs-on: ubuntu-latest
-    if: github.event.inputs.report_type == 'monthly' || github.event.schedule == '0 9 1 * *'
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 9 1 * *'
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
