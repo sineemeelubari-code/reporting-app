@@ -10,7 +10,6 @@ on:
 jobs:
   daily:
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 9 * * *'
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -21,7 +20,6 @@ jobs:
 
   weekly:
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 9 * * 0'
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -32,7 +30,6 @@ jobs:
 
   monthly:
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 9 1 * *'
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
