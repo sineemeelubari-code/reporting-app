@@ -1,5 +1,0 @@
-- name: Upload Weekly Artifacts
-  uses: actions/upload-artifact@v3
-  with:
-    name: weekly-artifacts
-    path: output/
