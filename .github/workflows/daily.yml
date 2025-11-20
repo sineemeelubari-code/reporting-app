@@ -1,5 +1,0 @@
-- name: Upload Daily Artifacts
-  uses: actions/upload-artifact@v3
-  with:
-    name: daily-artifacts
-    path: output/
