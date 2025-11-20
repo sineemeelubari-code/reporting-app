@@ -1,0 +1,14 @@
+import os
+
+# Ensure output folder exists
+os.makedirs("output", exist_ok=True)
+
+# Example outputs
+with open("output/daily_report.txt", "w") as f:
+    f.write("Daily summary content...")
+
+with open("output/daily_log.txt", "w") as f:
+    f.write("Log: Daily run completed successfully.")
+
+with open("output/daily_chart.csv", "w") as f:
+    f.write("date,value\n2025-11-20,100\n")
