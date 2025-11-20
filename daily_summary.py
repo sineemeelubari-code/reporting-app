@@ -1,15 +1,13 @@
-def main():
-    print("Starting daily summary report...")
+import os
 
-    try:
-        # Your existing logic to generate and send the daily summary
-        # Example: send_email(daily_summary_content)
+# Ensure output folder exists
+os.makedirs("output", exist_ok=True)
 
-        print("Daily report sent successfully!")
+# Generate your report content
+report_content = "Daily summary report content goes here..."
 
-    except Exception as e:
-        # Capture any error and print it to the GitHub Actions logs
-        print("❌ Error while sending daily report:", str(e))
+# Save to file
+with open("output/daily_report.txt", "w") as f:
+    f.write(report_content)
 
-if __name__ == "__main__":
-    main()
+print("✅ Daily report saved to output/daily_report.txt")
