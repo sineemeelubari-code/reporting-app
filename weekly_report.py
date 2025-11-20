@@ -1,14 +1,10 @@
-def main():
-    print("Starting weekly report...")
+import os
 
-    try:
-        # Your existing logic to generate and send the weekly report
-        # Example: send_email(weekly_report_content)
+os.makedirs("output", exist_ok=True)
 
-        print("Weekly report sent successfully!")
+report_content = "Weekly report content goes here..."
 
-    except Exception as e:
-        print("❌ Error while sending weekly report:", str(e))
+with open("output/weekly_report.txt", "w") as f:
+    f.write(report_content)
 
-if __name__ == "__main__":
-    main()
+print("✅ Weekly report saved to output/weekly_report.txt")
