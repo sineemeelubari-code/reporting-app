@@ -1,14 +1,10 @@
-def main():
-    print("Starting monthly report...")
+import os
 
-    try:
-        # Your existing logic to generate and send the monthly report
-        # Example: send_email(monthly_report_content)
+os.makedirs("output", exist_ok=True)
 
-        print("Monthly report sent successfully!")
+report_content = "Monthly report content goes here..."
 
-    except Exception as e:
-        print("❌ Error while sending monthly report:", str(e))
+with open("output/monthly_report.txt", "w") as f:
+    f.write(report_content)
 
-if __name__ == "__main__":
-    main()
+print("✅ Monthly report saved to output/monthly_report.txt")
