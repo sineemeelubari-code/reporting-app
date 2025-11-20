@@ -1,3 +1,4 @@
-git add .github/workflows/*.yml
-git commit -m "Upgrade actions/upload-artifact to v4"
+git add .github/workflows/reports.yml
+git rm .github/workflows/daily.yml .github/workflows/weekly.yml .github/workflows/monthly.yml
+git commit -m "Combine daily, weekly, monthly workflows into one unified reports.yml"
 git push
