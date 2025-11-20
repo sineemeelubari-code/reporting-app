@@ -1,5 +1,11 @@
-- name: Upload Daily Artifacts
+- name: Upload Weekly Artifacts
   uses: actions/upload-artifact@v3
   with:
-    name: daily-artifacts
+    name: weekly-artifacts
+    path: output/
+
+- name: Upload Monthly Artifacts
+  uses: actions/upload-artifact@v3
+  with:
+    name: monthly-artifacts
     path: output/
