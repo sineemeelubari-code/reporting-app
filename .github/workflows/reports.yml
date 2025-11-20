@@ -1,0 +1,78 @@
+name: Reporting Automation
+
+on:
+  schedule:
+    - cron: "0 9 * * *"     # Daily at 9 AM UTC
+    - cron: "0 9 * * MON"   # Weekly (Monday at 9 AM UTC)
+    - cron: "0 9 1 * *"     # Monthly (1st of month at 9 AM UTC)
+  workflow_dispatch:         # Allow manual trigger
+
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run daily script
+        run: python daily_summary.py
+
+      - name: Upload Daily Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-artifacts
+          path: output/
+
+  weekly:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run weekly script
+        run: python weekly_report.py
+
+      - name: Upload Weekly Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-artifacts
+          path: output/
+
+  monthly:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run monthly script
+        run: python monthly_report.py
+
+      - name: Upload Monthly Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: monthly-artifacts
+          path: output/
