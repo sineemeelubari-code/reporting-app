@@ -1,15 +1,3 @@
-jobs:
-  daily:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.9"
-      - run: pip install -r requirements.txt
-      - run: python daily_summary.py
-      - name: Upload Daily Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: daily-report
-          path: output/daily_report.txt
+git add .github/workflows/*.yml daily_summary.py weekly_report.py monthly_report.py
+git commit -m "Upload entire output folder as artifacts"
+git push
