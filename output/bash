@@ -1,3 +1,5 @@
-git add .github/workflows/monthly.yml
-git commit -m "Fix monthly workflow structure"
-git push
+- name: Upload Monthly Artifacts
+  uses: actions/upload-artifact@v4
+  with:
+    name: monthly-artifacts
+    path: output/
