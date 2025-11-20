@@ -1,13 +1,15 @@
 import os
 
-# Ensure output folder exists
 os.makedirs("output", exist_ok=True)
 
-# Generate your report content
-report_content = "Daily summary report content goes here..."
-
-# Save to file
+# Save main report
 with open("output/daily_report.txt", "w") as f:
-    f.write(report_content)
+    f.write("Daily summary report content...")
 
-print("✅ Daily report saved to output/daily_report.txt")
+# Save log file
+with open("output/daily_log.txt", "w") as f:
+    f.write("Log: Daily run completed successfully.")
+
+# Save chart (example placeholder)
+with open("output/daily_chart.csv", "w") as f:
+    f.write("date,value\n2025-11-20,100\n")
